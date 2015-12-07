@@ -1,19 +1,17 @@
-#!/bin/bash
+#!/bin/sh
 
-FLOOR=0
+read LINE <'data.txt'
+FLOOR=0		# ( -> floor+ and ) -> floor-
+POS=1
+while [ $POS -le ${#LINE} ]; do
+	CHAR="$( echo "$LINE" | cut -c$POS )"
 
-# ( -> floor+
-# ) -> floor-
-read -r LINE <'data.txt'
-
-POS=0
-while [ $POS -lt ${#LINE} ]; do {
-	case "${LINE:$POS:1}" in
+	case "$CHAR" in
 		'(') FLOOR=$(( FLOOR + 1 ));;
 		')') FLOOR=$(( FLOOR - 1 ));;
 	esac
 
 	POS=$(( POS + 1 ))
-} done
+done <'data.txt'
 
 echo "$FLOOR"
