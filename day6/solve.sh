@@ -70,4 +70,4 @@ for X in $(seq 0 999); do
 	done
 done
 
-echo "$I"
+echo "$I"	# = 400410 needs ~60 hours
